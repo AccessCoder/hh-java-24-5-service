@@ -13,6 +13,7 @@ import java.util.List;
 public class AppleService {
 
     private final AppleRepo repo;
+    private final IdService idService;
 
     public List<AppleDTO> getAllApples() {
         return repo.findAll().stream()
@@ -40,7 +41,7 @@ public class AppleService {
     public AppleDTO createApple(Apple apple) {
         Apple temp =  repo.save(apple);
         AppleDTO appleDTO = new AppleDTO(
-                temp.id(),
+                idService.generateId(),
                 temp.name(),
                 temp.color(),
                 temp.retailPrice());
